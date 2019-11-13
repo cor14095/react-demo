@@ -67,8 +67,9 @@ class AssignClassFormBase extends Component {
             console.log(this.state.classes[cid])
             this.props.firebase
                 .student(sid)
+                .child("classes")
                 .update({
-                    [cid]: {
+                    [this.state.classes[cid].className]: {
                         cid: this.state.classes[cid].cid,
                         className: this.state.classes[cid].className,
                         grade: 0
