@@ -12,6 +12,8 @@ import AdminPage from '../Admin';
 
 import MakeStudentPage from '../MakeStudent';
 import MakeClassPage from '../MakeClass';
+import AssignClassPage from '../AssignClass';
+
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -37,7 +39,7 @@ const App = () => (
 
       <Route exact path={ROUTES.MAKE_STUDENT} component={MakeStudentPage} />
       <Route exact path={ROUTES.MAKE_CLASS} component={MakeClassPage} />
-
+      <Route exact path={ROUTES.ASSIGN_CLASS} component={AssignClassPage} />
     </div>
   </Router>
 );
