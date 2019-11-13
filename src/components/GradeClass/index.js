@@ -66,6 +66,7 @@ class GradeClassFormBase extends Component {
         Object.keys(this.state.studentInfo.classes).map((index) => {
             let value = document.getElementById(index).value;
             this.state.studentInfo.classes[index].grade = value;
+            return 1;
         });
 
         let classes = this.state.studentInfo.classes
@@ -88,10 +89,7 @@ class GradeClassFormBase extends Component {
   
     render() {
       const {
-        studentName,
-        sid,
-        error,
-        studentInfo
+        sid
       } = this.state;
   
       const isInvalid = sid === 0;
