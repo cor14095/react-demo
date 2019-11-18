@@ -31,6 +31,9 @@ const NavigationAuth = () => (
     <NavItem>
       <NavLink tag={Link} to={ROUTES.ADMIN}>Admin</NavLink>
     </NavItem>
+    <NavItem>
+      <SignOutButton />
+    </NavItem>
   </Nav>
 );
 
