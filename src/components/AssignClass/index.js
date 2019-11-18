@@ -4,6 +4,17 @@ import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  Label,
+  Input,
+  Button,
+  ListGroup,
+  ListGroupItem } from 'reactstrap';
+
 const AssignClassPage = () => (
     <div>
       <h1>
@@ -12,7 +23,7 @@ const AssignClassPage = () => (
       <AssignClassForm />
     </div>
 );
-  
+
 const INITIAL_STATE = {
     className: '',
     cid: 0,
@@ -22,11 +33,11 @@ const INITIAL_STATE = {
     students: [],
     error: null,
 };
-  
+
 class AssignClassFormBase extends Component {
     constructor(props) {
       super(props);
-  
+
       this.state = { ...INITIAL_STATE };
     }
 
@@ -58,7 +69,7 @@ class AssignClassFormBase extends Component {
             }
         });
     }
-  
+
     onSubmit = event => {
         event.preventDefault();
         const { cid, sid } = this.state;
@@ -87,89 +98,93 @@ class AssignClassFormBase extends Component {
             })
         }
     };
-  
+
     onChange = event => {
       this.setState({ [event.target.name]: event.target.value });
     };
-  
+
     render() {
       const {
         sid,
         cid,
         error
       } = this.state;
-  
+
       const isInvalid =
         cid === 0 ||
         sid === 0;
-  
+
     return (
-        <div>
-            <div>
+        <Container>
+            <Row>
+              <Col xs={{size: 5, offset: 1}}>
                 <h2>Classes:</h2>
-                <ul>
+                <ListGroup>
                     {
                         Object.keys(this.state.classes).map( (index, key) => {
                             return (
-                                <li key={key}>
+                                <ListGroupItem key={key}>
                                     Class: {this.state.classes[index].className} - CID: {this.state.classes[index].cid}
-                                </li>
+                                </ListGroupItem>
                             );
                         })
                     }
-                </ul>
-
+                </ListGroup>
+              </Col>
+              <Col xs={{size: 5}}>
                 <h2>Students:</h2>
-                <ul>
+                <ListGroup>
                     {
                         Object.keys(this.state.students).map( (index, key) => {
                             return (
-                                <li key={key}>
+                                <ListGroupItem key={key}>
                                     Student: {this.state.students[index].studentName} - SID: {this.state.students[index].sid}
-                                </li>
+                                </ListGroupItem>
                             );
                         })
                     }
-                </ul>
-            </div>
+                </ListGroup>
+              </Col>
+            </Row>
+            <Row>
+              <Form onSubmit={this.onSubmit}>
+                  <h2>Selecciona un CID y un SID para asignar la clase al estudiante</h2>
 
-            <form onSubmit={this.onSubmit}>
-                <h2>Selecciona un CID y un SID para asignar la clase al estudiante</h2>
-                
-                <br />
-                <label> Class ID:</label>
-                <input
-                    name="cid"
-                    value={cid}
-                    onChange={this.onChange}
-                    type="number"
-                    placeholder="Class ID"
-                />
+                  <br />
+                  <Label> Class ID:</Label>
+                  <Input
+                      name="cid"
+                      value={cid}
+                      onChange={this.onChange}
+                      type="number"
+                      placeholder="Class ID"
+                  />
 
-                <br />
-                <label> Student ID:</label>
-                <input
-                    name="sid"
-                    value={sid}
-                    onChange={this.onChange}
-                    type="number"
-                    placeholder="Student ID"
-                />
+                  <br />
+                  <Label> Student ID:</Label>
+                  <Input
+                      name="sid"
+                      value={sid}
+                      onChange={this.onChange}
+                      type="number"
+                      placeholder="Student ID"
+                  />
 
-                <br />
-                <button disabled={isInvalid} type="submit">
-                    Assign Class
-                </button>
-        
-                {error && <p>{error.message}</p>}
-            </form>
-        </div>
+                  <br />
+                  <Button disabled={isInvalid} type="submit">
+                      Assign Class
+                  </Button>
+
+                  {error && <p>{error.message}</p>}
+              </Form>
+            </Row>
+        </Container>
       );
     }
   }
-  
+
   const AssignClassForm = withRouter(withFirebase(AssignClassFormBase));
-  
+
   export default AssignClassPage;
-  
+
   export { AssignClassForm };

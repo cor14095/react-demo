@@ -1,9 +1,19 @@
 import React from 'react';
 
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap';
+
 const Landing = () => (
   <div>
-    <h1>Landing</h1>
-    <p>The Home Page is accessible by every signed in user.</p>
+    <Card>
+        <CardBody>
+          <CardTitle>Landing</CardTitle>
+          <CardSubtitle>This page is public</CardSubtitle>
+          <CardText>The Landing Page is accessible by every signed in user.</CardText>
+        </CardBody>
+      </Card>
   </div>
 );
 

@@ -5,6 +5,7 @@ import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 
 import { AuthUserContext } from '../Session';
+import { Nav, NavItem, NavLink } from 'reactstrap';
 
 const Navigation = () => (
   <div>
@@ -17,34 +18,31 @@ const Navigation = () => (
 );
 
 const NavigationAuth = () => (
-  <ul>
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.HOME}>Home</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.ACCOUNT}>Account</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.ADMIN}>Admin</Link>
-    </li>
-    <li>
-      <SignOutButton />
-    </li>
-  </ul>
+  <Nav>
+    <NavItem>
+      <NavLink tag={Link} to={ROUTES.LANDING}>Landing</NavLink>
+    </NavItem>
+    <NavItem>
+      <NavLink tag={Link} to={ROUTES.HOME}>Home</NavLink>
+    </NavItem>
+    <NavItem>
+      <NavLink tag={Link} to={ROUTES.ACCOUNT}>Account</NavLink>
+    </NavItem>
+    <NavItem>
+      <NavLink tag={Link} to={ROUTES.ADMIN}>Admin</NavLink>
+    </NavItem>
+  </Nav>
 );
 
 const NavigationNonAuth = () => (
-  <ul>
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-    </li>
-  </ul>
+  <Nav>
+    <NavItem>
+      <NavLink tag={Link} to={ROUTES.LANDING}>Landing</NavLink>
+    </NavItem>
+    <NavItem>
+      <NavLink tag={Link} to={ROUTES.SIGN_IN}>Sign In</NavLink>
+    </NavItem>
+  </Nav>
 );
 
 export default Navigation;
